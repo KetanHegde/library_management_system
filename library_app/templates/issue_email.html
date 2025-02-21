@@ -1,0 +1,21 @@
+<html>
+    <body>  
+<h2>Hi {{ user.user_name }},</h2>
+<p>Here are the details of a book issued to you</p>
+<div style="font-size: medium;font-weight: 500;">
+<p style="font-weight:700;">Book Title: {{book.book_title}}</p>
+<p>Book Authors: <br>
+{% for author in authors %}
+{{author.author_name}} <br>
+{% endfor %}
+</p>
+</div>
+<br>
+<br>
+<div style="color: purple;">
+    <p>With Regards <br>
+    <span style="font-weight: 900;font-size: large;color: purple;">Ketan Hegde</span><br>
+    <span style="color: purple;">Django developer</span></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+Hi {{ user.user_name }},
+Here are the details of a book issued to you
+
+Book Title: {{book.book_title}}
+
+Book Authors:
+
+{% for author in authors %}
+{{author.author_name}}
+{% endfor %}
+
+With Regards 
+Ketan Hegde
+Django developer

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+          sans-serif;
+      }
+      input,
+      textarea {
+        box-shadow: none !important;
+        border: 0.1px solid #888 !important;
+      }
+      input:focus,
+      textarea:focus {
+        border: 0.1px solid #0b9add !important;
+      }
+      label {
+        color: #515050;
+        font-weight: 700;
+        margin-bottom: 0 !important;
+      }
+      button {
+        background: #0b9add !important;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        text-align: center;
+      }
+      form,table {
+        width: 100%;
+      }
+      table th,
+      table td {
+        border: 0.1px solid black;
+        text-align: center;
+        padding: 8px;
+      }
+      table a:hover {
+        color: blue;
+      }
+    </style>
+  </head>
+
+  {% extends "search.html" %} {% block search_head %}
+  <span>Book ID or User ID</span>
+  {% endblock %} {% block content %} {% if message %}
+  <h3 style="font-size: xx-large; color: Red; text-align: center">
+    {{message}}
+  </h3>
+  {% endif %} {% if books_issued %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+  <table class="mb-4">
+    <tr>
+      <th>Book ID</th>
+      <th>Issued to</th>
+      <th>Issued Date & Time</th>
+      <th>Return</th>
+    </tr>
+    {% for book_issue in books_issued %}
+    <tr>
+      <td>
+        <a
+          href="/bookinfo/?search={{book_issue.book_id.book_id}}"
+          title="Click to view book details"
+          >{{book_issue.book_id.book_id}}</a
+        >
+      </td>
+      <td>{{ book_issue.user_id.user_id }}</td>
+      <td>{{ book_issue.date_out }}</td>
+      <td>
+        <div style="width:100%;display: flex;justify-content: center;align-items: center;">
+        <!-- <form method="post">
+          {% csrf_token %} -->
+          <!-- <input
+            type="hidden"
+            name="book_id"
+            value="{{ book_issue.book_id.book_id }}"
+          /> -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ book_issue.book_id.book_id }}" id="checkid" name="checked">
+          </div>
+          <!-- <button type="submit" class="btn btn-success">Return</button> -->
+        <!-- </form> -->
+      </div>
+      </td>
+    </tr>
+
+    {% endfor %}
+  </table>
+  <div style="display: flex;justify-content: center;align-items: center;" class="mb-4 mt-2">
+  <button type="submit" class="btn btn-success">Return selected</button>
+</div>
+  
+</form>
+  {% endif %} {% if smessage %}
+  <h3 style="font-size: xx-large; color: Green; text-align: center">
+    {{smessage}}
+  </h3>
+  {% endif %} {% endblock %}
+</html>

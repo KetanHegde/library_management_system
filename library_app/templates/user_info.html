@@ -1,0 +1,58 @@
+<head>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 0.1px solid black;
+    }
+    table th,
+    table td {
+      padding: 5px 10px;
+      border: 0.1px solid black;
+    }
+    table th {
+      width: 30%;
+      text-align: end;
+    }
+    pre {
+      font-family: inherit !important;
+      margin: 0 !important;
+      font-size: medium !important;
+    }
+  </style>
+</head>
+
+{% extends "search.html" %} {% block search_head %}
+<span>User ID</span>
+{% endblock %} {% block content %} {% if flag %}
+<h3 style="font-size: xx-large; color: Red">Didn't find anything</h3>
+{% endif %} {% for user in sb %}
+
+<table class="mb-4">
+  <tr>
+    <th>User ID</th>
+    <td>{{user.user_id}}</td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td>{{ user.user_name }}</td>
+  </tr>
+  <tr>
+    <th>Phone Number</th>
+    <td>{{ user.user_number }}</td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>{{ user.user_email }}</td>
+  </tr>
+  <tr>
+    <th>Date of Birth</th>
+    <td>{{ user.user_dob }}</td>
+  </tr>
+  <tr>
+    <th style="vertical-align: top">Address</th>
+    <td><pre>{{ user.user_address }}</pre></td>
+  </tr>
+</table>
+
+{% endfor %} {% endblock %}

@@ -1,0 +1,55 @@
+<head>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 0.1px solid black;
+    }
+    table th,
+    table td {
+      padding: 5px 10px;
+      border: 0.1px solid black;
+    }
+    table th {
+      width: 30%;
+      text-align: end;
+    }
+  </style>
+</head>
+
+{% extends "search.html" %} {% block search_head %}
+<span>Book ID or Title</span>
+{% endblock %} {% block content %} {% if flag %}
+<h3 style="font-size: xx-large; color: Red">Didn't find anything</h3>
+{% endif %} {% for s, authors in ba.items %}
+
+<table class="mb-4">
+  <tr>
+    <th>Book Id</th>
+    <td>{{s.book_id}}</td>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <td>{{ s.book_title }}</td>
+  </tr>
+  <tr>
+    <th>Publisher</th>
+    <td>{{ s.publisher_name }}</td>
+  </tr>
+  <tr>
+    <th>Publication Year</th>
+    <td>{{ s.pub_year }}</td>
+  </tr>
+  <tr>
+    <th rowspan="{{authors|length|add:3 }}" style="vertical-align: top">
+      Written By
+    </th>
+  </tr>
+  {% for a in authors %}
+  <tr>
+    <td>{{a.author_name}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endfor %} {% endblock %}

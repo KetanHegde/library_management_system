@@ -1,0 +1,9 @@
+Hi {{ name }},
+Thank you for registering with us.
+
+Now You can Use Our Library.
+
+
+With Regards
+Ketan Hegde
+Django developer

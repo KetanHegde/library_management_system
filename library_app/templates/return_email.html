@@ -1,0 +1,26 @@
+<html>
+    <body>  
+<h2>Hi {{ user.user_name }},</h2>
+<p>Here are the details of book(s) returned by you</p>
+
+{% for book_entry in book_with_authors %}
+<div style="font-size: medium;font-weight: 500;">
+<p><span style="font-weight:700;">Book Title: {{book_entry.book.book_title}}</span><br>
+    Book Authors: <br>
+    {% for author in book_entry.authors %}
+    {{author.author_name}} <br>
+    {% endfor %}
+</p>
+</div>
+
+{% endfor %}
+
+<br>
+<br>
+<div style="color: purple;">
+    <p>With Regards <br>
+    <span style="font-weight: 900;font-size: large;color: purple;">Ketan Hegde</span><br>
+    <span style="color: purple;">Django developer</span></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+Hi {{ user.user_name }},
+Here are the details of book(s) returned by you
+
+{% for book_entry in book_with_authors %}
+
+Book Title: {{book_entry.book.book_title}}
+
+Book Authors:
+
+{% for author in book_entry.authors %}
+{{author.author_name}}
+{% endfor %}
+{% endfor %}
+
+With Regards 
+Ketan Hegde
+Django developer
